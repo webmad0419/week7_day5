@@ -5,8 +5,8 @@ import CoasterForm from './coaster-form'
 
 class CoastersList extends Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = { coasters: [], loggedInUser: null }
         this.services = new CoasterServices()
     }
@@ -31,7 +31,7 @@ class CoastersList extends Component {
                 <h1>Listado de montañas rusas</h1>
 
                 {this.state.loggedInUser ?
-                    <CoasterForm refreshCoasters={this.getAllCoasters} /> : null}
+                    <CoasterForm /> : null}
 
                 <div className="row coaster-list">
 
