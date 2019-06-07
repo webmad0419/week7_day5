@@ -1,4 +1,3 @@
-
 const express = require('express');
 const authRoutes = express.Router();
 
@@ -67,7 +66,6 @@ authRoutes.post('/signup', (req, res, next) => {
 
 
 
-
 authRoutes.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, theUser, failureDetails) => {
         if (err) {
@@ -95,6 +93,7 @@ authRoutes.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
+
 authRoutes.post('/logout', (req, res, next) => {
     req.logout();
     res.status(200).json({ message: 'Log out success!' });
@@ -108,5 +107,7 @@ authRoutes.get('/loggedin', (req, res, next) => {
     }
     res.status(403).json({ message: 'Unauthorized' });
 });
+
+
 
 module.exports = authRoutes;

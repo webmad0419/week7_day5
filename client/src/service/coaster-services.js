@@ -10,6 +10,7 @@ export default class services {
     }
 
     getAllCoasters = () => {
+
         return this.service.get('getAllCoasters')
             .then(res => res.data)
             .catch(err => console.log('Error', err))
@@ -22,10 +23,9 @@ export default class services {
             .catch(err => console.log('Error', err))
     }
 
-
-    postNewCoaster = coaster => {
-        return this.service.post(`newCoaster`, coaster)
+    postCoaster = coaster => {
+        return this.service.post('newCoaster', coaster)
             .then(res => res.data)
-            .catch(err => console.log('Error', err))
+            .catch(err => console.log(err))
     }
 }

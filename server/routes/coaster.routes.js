@@ -9,7 +9,6 @@ router.get('/getAllCoasters', (req, res) => {
         .catch(err => console.log('Error:', err))
 })
 
-
 router.get('/getOneCoaster/:id', (req, res) => {
     Coaster.findById(req.params.id)
         .then(data => res.json(data))

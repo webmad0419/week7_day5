@@ -5,19 +5,12 @@ export default class services {
     constructor() {
 
         this.service = axios.create({
-            baseURL: 'http://localhost:3000/api/',
-            withCredentials: true
+            baseURL: 'http://localhost:3000/api/'
         })
     }
 
-
     signup = (username, password) => {
         return this.service.post('/signup', { username, password })
-            .then(response => response.data)
-    }
-
-    loggedin = () => {
-        return this.service.get('/loggedin')
             .then(response => response.data)
     }
 
@@ -28,8 +21,11 @@ export default class services {
 
     logout = () => {
         return this.service.post('/logout', {})
-            .then(response => {
-                return response.data
-            })
+            .then(response => response.data)
+    }
+
+    loggedin = () => {
+        return this.service.get('/loggedin')
+            .then(response => response.data)
     }
 }

@@ -7,7 +7,7 @@ class CoastersList extends Component {
 
     constructor(props) {
         super(props)
-        this.state = { coasters: [], loggedInUser: null }
+        this.state = { coasters: [] }
         this.services = new CoasterServices()
     }
 
@@ -18,11 +18,6 @@ class CoastersList extends Component {
     }
 
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({ loggedInUser: nextProps["userInSession"] });
-    }
-
-
     render() {
         return (
 
@@ -30,8 +25,8 @@ class CoastersList extends Component {
 
                 <h1>Listado de montañas rusas</h1>
 
-                {this.state.loggedInUser ?
-                    <CoasterForm /> : null}
+                {this.props.userInSession ? <CoasterForm /> : null}
+
 
                 <div className="row coaster-list">
 

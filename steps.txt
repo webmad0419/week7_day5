@@ -1,0 +1,95 @@
+---- SERVER ----
+
+- crear modelo montaña rusa
+- crear baseURL para la API de montañas rusas
+- crear endopoint /getAllCoasters
+- postman
+
+
+
+---- CLIENT ----
+
+- Bootstrap CSS en public/index.html
+- Router en index.js
+- Creat sevicio getAllCoasters() en services/
+- Crear componente coasters-list
+- Montar componente en App.js
+
+
+
+---- ERRROR DE CORS : SERVER ----
+
+- Instalar dependencia CORS
+
+
+
+--- CLIENT ---
+
+- Crear componente CoasterCard
+- Enrutado SPA
+- Servicio getOneCoaster
+
+
+--- SERVER ---
+
+- Endpoint getOneCoaster
+
+
+
+--- CLIENT ---
+
+- Crear componente CoasterDetail
+- Enrutar su montaje en App
+
+
+
+---------- DIA 2 ----------
+
+--- CLIENT ---
+
+- Crear componente CoasterForm
+- Crear servicio postCoaster()
+
+
+--- SERVER ---
+
+- Crear endpoint /newCoaster
+
+
+
+--- CLIENT ---
+
+- Instalar Bootstrap React
+- Incluir componente CoasterForm dentro de ventana modal
+- Montar componente CoasterList en CoasterForm
+- Desmontar CoasterForm de App
+- Crear componente Navigation
+- Montar Navigation en App.js
+
+
+
+
+--- AUTENTICACION ---
+--- SERVER ---
+
+- Enlazar configs/passport.config.js
+- Configurar sesión y middlewares de passport
+- Crear rutas en auth.routes.js
+- Testeo con Postman OK!
+
+
+--- CLIENT ---
+- Crear componente signup
+- Crear state en App.js con loggedInUser
+- Crear método setUser() en App.js para manipoularlo
+
+- Crear fecthUser() en App.js para comprobar si está logueado previo a cualquier randerizado
+- Incluir fetchUser() como primera instruccion del render
+
+- Crear enrutados condicionales en App.js segun si esta iniciado
+- Crear navegaciones condicionales en Navigation segun si esta iniciado
+
+- Crear login, logout, montar componentes
+- Asociar logout a barra de nacvegación
+- Randerizar de forma condicional rutas y barra de nacvegación
+- Randerizar de forma condicional componente CoasterForm en CoasterList

@@ -11,77 +11,74 @@ class CoasterForm extends Component {
             coaster: {
                 title: '',
                 description: '',
-                inversions: '',
                 length: '',
+                inversions: '',
                 imageUrl: ''
             },
             show: false
         }
-        this.services = new CoasterServices()
-
         this.handleShow = this.handleShow.bind(this)
         this.handleClose = this.handleClose.bind(this)
+        this.services = new CoasterServices()
     }
 
     handleClose = () => this.setState({ show: false })
     handleShow = () => this.setState({ show: true })
 
-    handleState = e => {
+    handlechange = e => {
         const { name, value } = e.target
         this.setState({
             coaster: {
-                ...this.state.coaster, [name]: value
+                ...this.state.coaster,
+                [name]: value
             }
         })
     }
 
     handleSubmit = e => {
         e.preventDefault()
-        this.services.postNewCoaster(this.state.coaster)
+        this.services.postCoaster(this.state.coaster)
             .then(x => window.location.href = "/coasters")
     }
 
     render() {
         return (
-            <div>
+            <div className="" >
 
-                <button className="btn btn-outline-dark" onClick={this.handleShow}>Crear montaña rusa</button>
+                <button className="btn btn-dark" onClick={this.handleShow}>Nueva montaña rusa</button>
 
                 <Modal show={this.state.show} onHide={this.handleClose}>
-                    <Modal.Header>
-                        <Modal.Title>Nueva Montaña rusa</Modal.Title>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Nueva montaña rusa</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <form onSubmit={this.handleSubmit}>
                             <div className="form-group">
-                                <label>Título</label>
-                                <input type="text" className="form-control" name="title" value={this.state.coaster.title} onChange={this.handleState} />
+                                <label htmlFor="title">Título</label>
+                                <input onChange={this.handlechange} value={this.state.coaster.title} type="text" className="form-control" id="title" name="title" />
                             </div>
-
                             <div className="form-group">
-                                <label>Descripción</label>
-                                <input type="text" className="form-control" name="description" value={this.state.coaster.description} onChange={this.handleState} />
+                                <label htmlFor="description">Descripción</label>
+                                <input onChange={this.handlechange} value={this.state.coaster.description} type="text" className="form-control" id="description" name="description" />
                             </div>
-
                             <div className="form-group">
-                                <label>Longitud</label>
-                                <input type="number" className="form-control" name="length" value={this.state.coaster.length} onChange={this.handleState} />
+                                <label htmlFor="length">Longitud</label>
+                                <input onChange={this.handlechange} value={this.state.coaster.length} type="number" className="form-control" id="length" name="length" />
                             </div>
-
                             <div className="form-group">
-                                <label>Inversiones</label>
-                                <input type="number" className="form-control" name="inversions" value={this.state.coaster.inversions} onChange={this.handleState} />
+                                <label htmlFor="inversions">Inversiones</label>
+                                <input onChange={this.handlechange} value={this.state.coaster.inversions} type="number" className="form-control" id="inversions" name="inversions" />
                             </div>
-
                             <div className="form-group">
-                                <label>Imagen</label>
-                                <input type="text" className="form-control" onChange={this.handleState} />
+                                <label htmlFor="imageUrl">URL imagen</label>
+                                <input onChange={this.handlechange} value={this.state.coaster.imageUrl} type="text" className="form-control" id="imageUrl" name="imageUrl" />
                             </div>
-
-                            <button type="submit" className="btn btn-dark">Crear</button>
+                            <button type="submit" className="btn btn-dark">Enviar</button>
                         </form>
                     </Modal.Body>
                 </Modal>
+
+
             </div>
         )
     }

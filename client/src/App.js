@@ -3,37 +3,31 @@ import './App.css';
 import CoastersList from './components/coasters-list'
 import CoasterDetails from './components/coaster-details'
 import Navigation from './components/navigation'
-import Homepage from './components/homepage'
+import Home from './components/home'
 import Signup from './components/auth/signup'
 import Login from './components/auth/login'
-
-import AuthServices from './service/auth-services';
-
+import AuthServices from './service/auth-services'
 
 import { Switch, Route } from 'react-router-dom'
 
 class App extends Component {
 
+
   constructor(props) {
     super(props)
-    this.state = { loggedInUser: null };
-    this.service = new AuthServices();
+    this.state = { loggedInUser: null }
+    this.services = new AuthServices()
   }
 
-  setTheUser = userObj => {
-    this.setState({ loggedInUser: userObj })
-  }
+  setUser = userObj => this.setState({ loggedInUser: userObj })
 
-
-  fetchUser() {
+  fetchUser = () => {
     if (this.state.loggedInUser === null) {
-      this.service.loggedin()
+      this.services.loggedin()
         .then(response => this.setState({ loggedInUser: response }))
-        .catch(err => this.setState({ loggedInUser: false }))
+        .catch(x => this.setState({ loggedInUser: false }))
     }
   }
-
-
 
   render() {
 
@@ -42,9 +36,9 @@ class App extends Component {
     if (this.state.loggedInUser) {
       return (
         <div>
-          <Navigation setUser={this.setTheUser} userInSession={this.state.loggedInUser} />
+          <Navigation userInSession={this.state.loggedInUser} setTheUser={this.setUser} />
           <Switch>
-            <Route path="/" exact component={Homepage} />
+            <Route path="/" exact component={Home} />
             <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
             <Route path="/coasters/:id" component={CoasterDetails} />
           </Switch>
@@ -52,14 +46,15 @@ class App extends Component {
       )
     } else {
       return (
+
         <div>
-          <Navigation setUser={this.setTheUser} userInSession={this.state.loggedInUser} />
+          <Navigation userInSession={this.state.loggedInUser} />
           <Switch>
-            <Route path="/" exact component={Homepage} />
+            <Route path="/" exact component={Home} />
             <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
             <Route path="/coasters/:id" component={CoasterDetails} />
-            <Route path="/signup" exact render={() => <Signup setUser={this.setTheUser} />} />
-            <Route path="/login" exact render={() => <Login setUser={this.setTheUser} />} />
+            <Route path="/signup" render={() => <Signup setTheUser={this.setUser} />} />
+            <Route path="/login" render={() => <Login setTheUser={this.setUser} />} />
           </Switch>
         </div>
       )
